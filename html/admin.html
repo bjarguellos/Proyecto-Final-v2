@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Panel de Administración - Tienda de Zapatos</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center">Panel de Administración</h2>
+        
+        <h3 class="mt-4">Gestión</h3>
+        <div class="list-group">
+            <a href="create_user.html" class="list-group-item list-group-item-action">Crear Nuevo Usuario</a>
+            <a href="manage-products.html" class="list-group-item list-group-item-action">Gestionar Productos</a>
+            <a href="manage-orders.html" class="list-group-item list-group-item-action">Gestionar Pedidos</a>
+            <a href="manage-users.html" class="list-group-item list-group-item-action">Gestionar Usuarios</a>
+        </div>
+
+        <h3 class="mt-4">Acciones Administrativas</h3>
+        <div class="list-group">
+            <a href="reset-password.html" class="list-group-item list-group-item-action">Restablecer Contraseña de Usuario</a>
+            <a href="deactivate-user.html" class="list-group-item list-group-item-action">Inhabilitar Usuario</a>
+            <a href="new_product.html" class="list-group-item list-group-item-action">Agregar Nuevo Producto</a>
+        </div>
+
+        <h3 class="mt-4">Estadísticas</h3>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Resumen de Actividades</h5>
+                <p class="card-text">Total de Usuarios: <span id="total-users">100</span></p>
+                <p class="card-text">Total de Productos: <span id="total-products">50</span></p>
+                <p class="card-text">Total de Pedidos: <span id="total-orders">200</span></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Carrito - Tienda de Zapatos</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // Function to show/hide the warehouse selection and address fields
+        function toggleWarehouseSelection() {
+            const paymentMethod = document.getElementById('paymentMethod').value;
+            const warehouseDiv = document.getElementById('warehouseDiv');
+            const addressFields = document.getElementById('addressFields');
+
+            if (paymentMethod === 'efectivo') {
+                warehouseDiv.style.display = 'block';
+                addressFields.style.display = 'none'; // Hide address fields
+            } else {
+                warehouseDiv.style.display = 'none';
+                addressFields.style.display = 'block'; // Show address fields
+            }
+        }
+
+        // Initialize visibility of the warehouse and address fields on load
+        window.onload = function() {
+            toggleWarehouseSelection();
+            updateTotal(); // Initialize total on load
+        };
+
+        // Function to update the total price for a specific row
+        function updateRowTotal(row) {
+            const price = parseFloat(row.cells[1].innerText.replace('₡', '').trim());
+            const quantity = parseInt(row.cells[2].innerText.trim());
+            const rowTotal = price * quantity;
+            row.cells[3].innerText = '₡' + rowTotal.toFixed(2);
+        }
+
+        // Function to update the overall total price
+        function updateTotal() {
+            const rows = document.querySelectorAll('tbody tr');
+            let total = 0;
+            rows.forEach(row => {
+                const rowTotal = parseFloat(row.cells[3].innerText.replace('₡', '').trim());
+                total += rowTotal;
+            });
+            document.getElementById('total').innerText = '₡' + total.toFixed(2);
+        }
+
+        // Function to add quantity
+        function addQuantity(row) {
+            const quantityCell = row.cells[2];
+            let quantity = parseInt(quantityCell.innerText.trim());
+            quantityCell.innerText = quantity + 1;
+            updateRowTotal(row); // Update row total
+            updateTotal(); // Update overall total
+        }
+
+        // Function to decrease quantity
+        function decreaseQuantity(row) {
+            const quantityCell = row.cells[2];
+            let quantity = parseInt(quantityCell.innerText.trim());
+            if (quantity > 1) {
+                quantityCell.innerText = quantity - 1;
+                updateRowTotal(row); // Update row total
+                updateTotal(); // Update overall total
+            }
+        }
+
+        // Function to remove item
+        function removeItem(row) {
+            const tableBody = document.querySelector('tbody');
+            tableBody.removeChild(row);
+            updateTotal(); // Update overall total
+        }
+
+        // Function to show alert (for demonstration purposes)
+        function showAlert(message) {
+            alert(message);
+        }
+    </script>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center">Carrito</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Precio</th>
+                    <th>Cantidad</th>
+                    <th>Total</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Zapato Deportivo</td>
+                    <td>₡10000.00</td>
+                    <td>1</td>
+                    <td>₡10000.00</td>
+                    <td>
+                        <button class="btn btn-warning btn-sm" onclick="decreaseQuantity(this.parentNode.parentNode)">-</button>
+                        <button class="btn btn-success btn-sm" onclick="addQuantity(this.parentNode.parentNode)">+</ button>
+                        <button class="btn btn-danger btn-sm" onclick="removeItem(this.parentNode.parentNode)">Eliminar</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Zapato Casual</td>
+                    <td>₡40000.00</td>
+                    <td>1</td>
+                    <td>₡40000.00</td>
+                    <td>
+                        <button class="btn btn-warning btn-sm" onclick="decreaseQuantity(this.parentNode.parentNode)">-</button>
+                        <button class="btn btn-success btn-sm" onclick="addQuantity(this.parentNode.parentNode)">+</button>
+                        <button class="btn btn-danger btn-sm" onclick="removeItem(this.parentNode.parentNode)">Eliminar</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Zapato Formal</td>
+                    <td>₡20000.00</td>
+                    <td>1</td>
+                    <td>₡20000.00</td>
+                    <td>
+                        <button class="btn btn-warning btn-sm" onclick="decreaseQuantity(this.parentNode.parentNode)">-</button>
+                        <button class="btn btn-success btn-sm" onclick="addQuantity(this.parentNode.parentNode)">+</button>
+                        <button class="btn btn-danger btn-sm" onclick="removeItem(this.parentNode.parentNode)">Eliminar</button>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th colspan="3">Total:</th>
+                    <th id="total">₡80000.00</th>
+                </tr>
+            </tfoot>
+        </table>
+
+        <!-- Payment Method -->
+        <div class="form-group">
+            <label for="paymentMethod">Forma de pago:</label>
+            <select id="paymentMethod" class="form-control" onchange="toggleWarehouseSelection()">
+                <option value="sinpe">SINPE</option>
+                <option value="paypal">PayPal</option>
+                <option value="transferencia">Transferencia</option>
+                <option value="efectivo">Efectivo (contra entrega)</option>
+            </select>
+        </div>
+
+        <!-- Address Input Section -->
+        <div id="addressFields">
+            <h4> Dirección de Envío</h4>
+            <div class="form-group">
+                <label for="fullName">Nombre Completo:</label>
+                <input type="text" class="form-control" id="fullName" placeholder="Juan Pérez">
+            </div>
+            <div class="form-group">
+                <label for="address">Dirección:</label>
+                <input type="text" class="form-control" id="address" placeholder="542 W. 15th Street">
+            </div>
+            <div class="form-group">
+                <label for="city">Ciudad:</label>
+                <input type="text" class="form-control" id="city" placeholder="San José">
+            </div>
+            <div class="form-group">
+                <label for="state">Estado/Provincia:</label>
+                <input type="text" class="form-control" id="state" placeholder="San José">
+            </div>
+            <div class="form-group">
+                <label for="zip">Código Postal:</label>
+                <input type="text" class="form-control" id="zip" placeholder="10101">
+            </div>
+        </div>
+
+        <!-- Warehouse Selection -->
+        <div id="warehouseDiv" style="display: none;">
+            <div class="form-group">
+                <label for="warehouse">Bodega</label>
+                <select class="form-control" id="warehouse">
+                    <option value="1">San José - Curridabat</option>
+                    <option value="2">Alajuela - San Rafael</option>
+                    <option value="3">Heredia - San Francisco</option>
+                    <option value="4">Cartago - Tirrases</option>
+                    <option value="5">Puntarenas - Chacarita</option>
+                    <option value="6">Limón - Limón Centro </option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Buttons -->
+        <button class="btn btn-primary" onclick="showAlert('Procesando pago...')">Proceder al Pago</button>
+        <button class="btn btn-secondary" onclick="location.href='index.html'">Volver al Catálogo</button>
+    </div>
+</body>
+</html>

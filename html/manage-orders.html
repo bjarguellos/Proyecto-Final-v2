@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestionar Órdenes - Tienda de Zapatos</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center">Gestionar Órdenes</h2>
+        
+        <!-- Tabla de Órdenes -->
+        <table class="table table-bordered mt-4">
+            <thead class="thead-light">
+                <tr>
+                    <th>ID de la Orden</th>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Bodega</th>
+                    <th>Proveedor</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Orden #1</td>
+                    <td>Zapato Deportivo</td>
+                    <td>10</td>
+                    <td>San José - Curridabat</td>
+                    <td>Adidas</td>
+                    <td>Enviado</td>
+                </tr>
+                <tr>
+                    <td>Orden #2</td>
+                    <td>Zapato Casual</td>
+                    <td>5</td>
+                    <td>Alajuela - San Rafael</td>
+                    <td>Adoc</td>
+                    <td>En Proceso</td>
+                </tr>
+                <tr>
+                    <td>Orden #3</td>
+                    <td>Zapato Formal</td>
+                    <td>20</td>
+                    <td>Heredia - San Francisco</td>
+                    <td>Zumzum</td>
+                    <td>Entregado</td>
+                </tr>
+                <!-- Puedes agregar más filas aquí -->
+            </tbody>
+        </table>
+
+        <!-- Formulario para Crear Nueva Orden -->
+        <h3 class="text-center mt-4">Crear Nueva Orden</h3>
+        <form>
+            <div class="form-group">
+                <label for="product">Producto:</label>
+                <select class="form-control" id="product" required>
+                    <option value="">Seleccione un producto...</option>
+                    <option value="zapato1">Zapato Deportivo</option>
+                    <option value="zapato2">Zapato Casual</option>
+                    <option value="zapato3">Zapato Formal</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="quantity">Cantidad:</label>
+                <input type="number" class="form-control" id="quantity" placeholder="Cantidad" required min="1">
+            </div>
+            <div class="form-group">
+                <label for="warehouse">Bodega:</label>
+                <select class="form-control" id="warehouse" required>
+                    <option value="1">San José - Curridabat</option>
+                    <option value="2">Alajuela - San Rafael</option>
+                    <option value="3">Heredia - San Francisco</option>
+                    <option value="4">Cartago - Tirrases</option>
+                    <option value="5">Puntarenas - Chacarita</option>
+                    <option value="6">Limón - Limón Centro</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="supplier">Proveedor:</label>
+                <select class="form-control" id="supplier" required>
+                    <option value="">Seleccione un proveedor...</option>
+                    <option value="adidas">Adidas</option>
+                    <option value="adoc">Adoc</option>
+                    <option value="zumzum">Zumzum</option>
+                    <option value="nike">Nike</option>
+                    <option value="puma">Puma</option>
+                    <option value="reebok">Reebok</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Crear Orden</button>
+            <a href="admin.html" class="btn btn-secondary ml-2">Regresar al Panel de Administración</a>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestionar Productos - Tienda de Zapatos</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center">Gestionar Productos</h2>
+
+        <!-- Lista de Productos Existentes -->
+        <div class="list-group">
+            <a href="#" class="list-group-item list-group-item-action">Zapato Deportivo</a>
+            <a href="#" class="list-group-item list-group-item-action">Zapato Casual</a>
+            <a href="#" class="list-group-item list-group-item-action">Zapato Formal</a>
+        </div>
+
+        <!-- Formulario para Agregar Nuevo Producto -->
+        <h3 class="mt-4">Agregar Nuevo Producto</h3>
+        <form>
+            <div class="form-group">
+                <label for="category">Categoría:</label>
+                <select class="form-control" id="category" required>
+                    <option value="">Seleccione una categoría...</option>
+                    <option value="caballero">Caballero</option>
+                    <option value="dama">Dama</option>
+                    <option value="niño">Niño</option>
+                    <option value="niña">Niña</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="subcategory">Subcategoría:</label>
+                <select class="form-control" id="subcategory" required>
+                    <option value="">Seleccione una subcategoría...</option>
+                    <option value="formal">Formal</option>
+                    <option value="informal">Informal</option>
+                    <option value="deportivo">Deportivo</option>
+                    <option value="sandalias">Sandalias</option>
+                    <option value="botas">Botas</option>
+                    <option value="zapatos de fiesta">Zapatos de Fiesta</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="size">Talla:</label>
+                <select class="form-control" id="size" required>
+                    <option value="">Seleccione una talla...</option>
+                    <option value="34">34</option>
+                    <option value="35">35</option>
+                    <option value="36">36</option>
+                    <option value="37">37</option>
+                    <option value="38">38</option>
+                    <option value="39">39</option>
+                    <option value="40">40</option>
+                    <option value="41">41</option>
+                    <option value="42">42</option>
+                    <option value="43">43</option>
+                    <option value="44">44</option>
+                    <option value="45">45</option>
+                    <option value="46">46</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="warehouse">Bodega:</label>
+                <select class="form-control" id="warehouse" required>
+                    <option value="1">San José - Curridabat</option>
+                    <option value="2">Alajuela - San Rafael</option>
+                    <option value="3">Heredia - San Francisco</option>
+                    <option value="4">Cartago - Tirrases</option>
+                    <option value="5">Puntarenas - Chacarita</option>
+                    <option value="6">Limón - Limón Centro</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Agregar Producto</button>
+            <a href="admin.html" class="btn btn-secondary ml-2">Regresar al Panel de Administración</a>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestionar Productos - Tienda de Zapatos</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/styles.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center">Gestionar Productos</h2>
+        <a href="new-product.html" class="btn btn-primary mb-3">Agregar Nuevo Producto</a>
+        
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Categoría</th>
+                    <th>Género</th>
+                    <th>Talla</th>
+                    <th>Estilo</th>
+                    <th>Cantidad Disponible</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="product-table-body">
+                <!-- Aquí se llenarán los productos desde el backend -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Simulación de productos almacenados
+        const products = [
+            { id: 1, name: 'Zapato Deportivo', category: 'Deportivo', gender: 'Unisex', size: '42', style: 'Moderno', quantity: 10 },
+            { id: 2, name: 'Zapato Casual', category: 'Casual', gender: 'Hombre', size: '40', style: 'Clásico', quantity: 5 },
+            { id: 3, name: 'Zapato Formal', category: 'Formal', gender: 'Mujer', size: '38', style: 'Elegante', quantity: 8 }
+        ];
+
+        // Función para cargar los productos en la tabla
+        function loadProducts() {
+            const tableBody = document.getElementById('product-table-body');
+            tableBody.innerHTML = ''; // Limpiar el contenido actual
+
+            products.forEach(product => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${product.id}</td>
+                    <td>${product.name}</td>
+                    <td>${product.category}</td>
+                    <td>${product.gender}</td>
+                    <td>${product.size}</td>
+                    <td>${product.style}</td>
+                    <td>${product.quantity}</td>
+                    <td>
+                        <a href="edit-product.html?id=${product.id}" class="btn btn-warning btn-sm">Editar</a>
+                        <button class="btn btn-danger btn-sm" onclick="deleteProduct(${product.id})">Eliminar</button>
+                    </td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Función para eliminar un producto (simulación)
+        function deleteProduct(id) {
+            const index = products.findIndex(product => product.id === id);
+            if (index > -1) {
+                products.splice(index, 1); // Eliminar el producto del array
+                loadProducts(); // Recargar la tabla
+            }
+        }
+
+        // Cargar los productos al cargar la página
+        window.onload = loadProducts;
+    </script>
+</body>
+</html>
